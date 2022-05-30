@@ -1,0 +1,3 @@
+% PID bad channel list (for interpolation)
+pidbcichans = {'PSG101', 'CCP2h'; 'PSG102', 'CZ|C1'; 'PSG103', 'FCC1h';...
+	'PSG104', 'C3|FCC2h'; 'PSG105', 'AFF1h'; 'PSG106', 'CCP2h'; 'PSG107', 'CCP2h'};

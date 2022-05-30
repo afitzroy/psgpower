@@ -1,0 +1,24 @@
+switch chooseexp
+	case 'Custom'
+	    %Detect recording montage
+	    if strcmp(EEG.chanlocs(1).labels, 'EOG1-REF')
+	        disp(['EOG-style montage/EIB configuration detected, continuing processing ' eegfn '...']);
+	        montisknown = 1;
+	    end
+	    if montisknown == 1
+	        %Add empty reference channel
+	        EEG = pop_eegchanoperator( EEG, {  'ch31 = 0 label CZ-REF'} , 'ErrorMsg', 'popup', 'Warning', 'off' ); % GUI: 20-Nov-2017 10:37:04
+	        %Remove -REF from channel labels
+	        for l = 1:length(EEG.chanlocs)
+	            EEG.chanlocs(l).labels = strsplit(EEG.chanlocs(l).labels, '-');
+	            EEG.chanlocs(l).labels = EEG.chanlocs(l).labels{1};
+	        end
+	    else
+	        disp(['WARNING! THIS .EDF FILE DOES NOT HAVE THE EXPECTED MONTAGE FOR ' upper(chooseexp) '. CHECK MANUALLY AND TRY AGAIN!']);
+	        stepout == 1;
+	    end
+	otherwise
+	    disp('WARNING! UNRECOGNIZED EXPERIMENT! Please Import a Custom Preprocessing .txt file and Rerun.')
+end
+
+                
