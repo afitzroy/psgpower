@@ -5,8 +5,8 @@
                 app.EEGSamplingFrequencyHzEditFieldLabel.Visible = 'off';
                 app.ChooseSubsetButton.Visible = 'off';
                 app.Step2SelectsignalprocessingapproachPanel.Visible = 'off';
-                app.Step3InitializeFrequencyBandsPanel.Visible = 'off';
-                app.Step4OptionalSettingsPanel.Visible = 'off';
+                app.Step3SelectbandsandstagesPanel.Visible = 'off';
+                app.Step4OthersettingsPanel.Visible = 'off';
                 app.AnalyzeButton.Enable = 'off';
             else
                 app.EEGSamplingFrequencyHzEditField.Visible = 'on';

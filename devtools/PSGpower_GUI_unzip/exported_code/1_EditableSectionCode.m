@@ -78,10 +78,10 @@
             app.EnvViewerTempROIHighNumericEditFieldLabel.Visible = 'off';
             
             %% Reset Step 3 component states
-            app.Step3InitializeFrequencyBandsPanel.Visible = 'off';
+            app.Step3SelectbandsandstagesPanel.Visible = 'off';
             
             %% Reset Step 4 component states
-            app.Step4OptionalSettingsPanel.Visible = 'off';
+            app.Step4OthersettingsPanel.Visible = 'off';
             app.DownsampletoHzCheckBox.Visible = 'off';
             app.SampRateisHighLabel.Visible = 'off';
             app.DownsampledFrequencyNumericEditField.Visible = 'off';
@@ -221,8 +221,8 @@
                     
                 otherwise
                     app.TabGroup.Visible = 'off';
-                    app.Step3InitializeFrequencyBandsPanel.Visible = 'off';
-                    app.Step4OptionalSettingsPanel.Visible = 'off';
+                    app.Step3SelectbandsandstagesPanel.Visible = 'off';
+                    app.Step4OthersettingsPanel.Visible = 'off';
                     app.AnalyzeButton.Enable = 'off';
                     app = setStep3Bands(app, {''}, 'othersOff', 1, 1, 1, 1, 1, 1);
                     

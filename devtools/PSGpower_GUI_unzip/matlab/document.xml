@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body><w:p><w:pPr><w:pStyle w:val="code"/></w:pPr><w:r><w:t><![CDATA[classdef PSGpower_GUI < matlab.apps.AppBase
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body><w:p><w:pPr><w:pStyle w:val="code"/></w:pPr><w:r><w:t><![CDATA[classdef PSGpower_GUI_trimmed < matlab.apps.AppBase
 
     % Properties that correspond to app components
     properties (Access = public)
@@ -55,19 +55,6 @@
         WindowoverlapproportionEditFieldLabel_2  matlab.ui.control.Label
         WindowoverlapproportionEditField_FT  matlab.ui.control.NumericEditField
         NoteLabelSpectra_FT             matlab.ui.control.Label
-        SpectranewtimefTab              matlab.ui.container.Tab
-        TimeintervalforspectraButtonGroup_ntf  matlab.ui.container.ButtonGroup
-        UsealldatainselectedstagesButton_ntf  matlab.ui.control.RadioButton
-        CustomtimerangeminStartButton_ntf  matlab.ui.control.RadioButton
-        CustomTimeIntervalStart_ntf     matlab.ui.control.NumericEditField
-        CustomTimeIntervalEnd_ntf       matlab.ui.control.NumericEditField
-        EndLabel_ntf                    matlab.ui.control.Label
-        toEditField_2Label_ntf          matlab.ui.control.Label
-        PlotFreqROIMaximumEditField_ntf  matlab.ui.control.NumericEditField
-        Apply60HznotchfilterbeforegeneratingspectraCheckBox_ntf  matlab.ui.control.CheckBox
-        NoteLabelSpectra_ntf            matlab.ui.control.Label
-        FrequencyrangeofinterestHzLabel_3  matlab.ui.control.Label
-        PlotFreqROIMinimumEditField_ntf  matlab.ui.control.NumericEditField
         PowerHilbertTab                 matlab.ui.container.Tab
         FiniteImpulseResponseFIRorderButtonGroup  matlab.ui.container.ButtonGroup
         HardcodedDefaultButton          matlab.ui.control.RadioButton
@@ -126,28 +113,10 @@
         OmitEmptyEnvelopesCheckBox      matlab.ui.control.CheckBox
         ThetaFilterModeDropDown_EnvViewerLabel  matlab.ui.control.Label
         ThetaFilterModeDropDown_EnvViewer  matlab.ui.control.DropDown
-        PACMuehlrothTab                 matlab.ui.container.Tab
-        WIPLabel                        matlab.ui.control.Label
-        TMRtistryWIPTab                 matlab.ui.container.Tab
-        TMRtistrySettingsButton         matlab.ui.control.Button
-        TMRtistrySettingsLampLabel      matlab.ui.control.Label
-        TMRtistrySettingsLamp           matlab.ui.control.Lamp
-        TMRtistryScriptImportButton     matlab.ui.control.Button
-        TMRtistryCustomScriptLampLabel  matlab.ui.control.Label
-        TMRtistryCustomScriptLamp       matlab.ui.control.Lamp
-        SpectrogramViewerTab            matlab.ui.container.Tab
-        UnderconstructionGaugeLabel     matlab.ui.control.Label
-        UnderconstructionGauge          matlab.ui.control.LinearGauge
-        HowmanyfrequenciesLabel         matlab.ui.control.Label
-        HowmanyfrequenciesEditField     matlab.ui.control.EditField
-        WhatelectrodeLabel              matlab.ui.control.Label
-        WhatelectrodeEditField          matlab.ui.control.EditField
-        SavetifsCheckBox                matlab.ui.control.CheckBox
-        SavetifmetasCheckBox            matlab.ui.control.CheckBox
         ModulespecificParametersLabel   matlab.ui.control.Label
         AnalysisModuleselectoneDropDownLabel  matlab.ui.control.Label
         AnalysisModuleselectoneDropDown  matlab.ui.control.DropDown
-        Step3InitializeFrequencyBandsPanel  matlab.ui.container.Panel
+        Step3SelectbandsandstagesPanel  matlab.ui.container.Panel
         SubdeltaCheckBox                matlab.ui.control.CheckBox
         DeltaCheckBox                   matlab.ui.control.CheckBox
         ThetaCheckBox                   matlab.ui.control.CheckBox
@@ -268,7 +237,7 @@
         SleepbandArtifact               matlab.ui.control.NumericEditField
         AllStagesButton                 matlab.ui.control.Button
         AllBandsButton                  matlab.ui.control.Button
-        Step4OptionalSettingsPanel      matlab.ui.container.Panel
+        Step4OthersettingsPanel         matlab.ui.container.Panel
         ForcerecreationofEEGLABsetfilesCheckBox  matlab.ui.control.CheckBox
         DownsampletoHzCheckBox          matlab.ui.control.CheckBox
         SampRateisHighLabel             matlab.ui.control.Label
@@ -377,10 +346,10 @@
             app.EnvViewerTempROIHighNumericEditFieldLabel.Visible = 'off';
             
             %% Reset Step 3 component states
-            app.Step3InitializeFrequencyBandsPanel.Visible = 'off';
+            app.Step3SelectbandsandstagesPanel.Visible = 'off';
             
             %% Reset Step 4 component states
-            app.Step4OptionalSettingsPanel.Visible = 'off';
+            app.Step4OthersettingsPanel.Visible = 'off';
             app.DownsampletoHzCheckBox.Visible = 'off';
             app.SampRateisHighLabel.Visible = 'off';
             app.DownsampledFrequencyNumericEditField.Visible = 'off';
@@ -520,8 +489,8 @@
                     
                 otherwise
                     app.TabGroup.Visible = 'off';
-                    app.Step3InitializeFrequencyBandsPanel.Visible = 'off';
-                    app.Step4OptionalSettingsPanel.Visible = 'off';
+                    app.Step3SelectbandsandstagesPanel.Visible = 'off';
+                    app.Step4OthersettingsPanel.Visible = 'off';
                     app.AnalyzeButton.Enable = 'off';
                     app = setStep3Bands(app, {''}, 'othersOff', 1, 1, 1, 1, 1, 1);
                     
@@ -995,8 +964,8 @@
                 app.EEGSamplingFrequencyHzEditFieldLabel.Visible = 'off';
                 app.ChooseSubsetButton.Visible = 'off';
                 app.Step2SelectsignalprocessingapproachPanel.Visible = 'off';
-                app.Step3InitializeFrequencyBandsPanel.Visible = 'off';
-                app.Step4OptionalSettingsPanel.Visible = 'off';
+                app.Step3SelectbandsandstagesPanel.Visible = 'off';
+                app.Step4OthersettingsPanel.Visible = 'off';
                 app.AnalyzeButton.Enable = 'off';
             else
                 app.EEGSamplingFrequencyHzEditField.Visible = 'on';
@@ -1016,8 +985,8 @@
                 app.ChooseSubsetButton.Visible = 'off';
                 app.FileSelectListbox.Visible = 'off';
                 app.Step2SelectsignalprocessingapproachPanel.Visible = 'off';
-                app.Step3InitializeFrequencyBandsPanel.Visible = 'off';
-                app.Step4OptionalSettingsPanel.Visible = 'off';
+                app.Step3SelectbandsandstagesPanel.Visible = 'off';
+                app.Step4OthersettingsPanel.Visible = 'off';
                 app.AnalyzeButton.Enable = 'off';
             else
                 app.ChooseSubsetButton.Visible = 'on';
@@ -1096,13 +1065,13 @@
             
             if strcmp(value, ' ')
                 app.TabGroup.Visible = 'off';
-                app.Step3InitializeFrequencyBandsPanel.Visible = 'off';
-                app.Step4OptionalSettingsPanel.Visible = 'off';
+                app.Step3SelectbandsandstagesPanel.Visible = 'off';
+                app.Step4OthersettingsPanel.Visible = 'off';
                 app.AnalyzeButton.Enable = 'off';
             else
                 app.TabGroup.Visible = 'on';
-                app.Step3InitializeFrequencyBandsPanel.Visible = 'on';
-                app.Step4OptionalSettingsPanel.Visible = 'on';
+                app.Step3SelectbandsandstagesPanel.Visible = 'on';
+                app.Step4OthersettingsPanel.Visible = 'on';
                 app.AnalyzeButton.Enable = 'on';
                 
                 app = moduleGUIsetup(app, value);
@@ -1122,7 +1091,7 @@
             
         end
 
-        % Callback function: Step3InitializeFrequencyBandsPanel, 
+        % Callback function: Step3SelectbandsandstagesPanel, 
         % SubdeltaCheckBox
         function SubdeltaCheckBoxValueChanged(app, event)
             
@@ -2980,7 +2949,7 @@
             
         end
 
-        % Button pushed function: TMRtistrySettingsButton
+        % Callback function
         function TMRtistrySettingsButtonPush(app, event)
             app.tmrtistry_settings = '';
             
@@ -3025,7 +2994,7 @@
             figure(app.UIFigure); % Refocus GUI as main window
         end
 
-        % Button pushed function: TMRtistryScriptImportButton
+        % Callback function
         function TMRtistryScriptButtonPush(app, event)
             app.tmrtistry_script = '';
             
@@ -3133,9 +3102,8 @@
         end
 
         % Value changed function: CustomTimeIntervalEnd, 
-        % CustomTimeIntervalEnd_FT, CustomTimeIntervalEnd_ntf, 
-        % CustomTimeIntervalStart, CustomTimeIntervalStart_FT, 
-        % CustomTimeIntervalStart_ntf
+        % CustomTimeIntervalEnd_FT, CustomTimeIntervalStart, 
+        % CustomTimeIntervalStart_FT
         function SpectimeInputValueChanged(app, event)
             switch app.AnalysisModuleselectoneDropDown.Value
                 case 'Spectra (EEGLAB)'
@@ -3465,79 +3433,6 @@
             app.NoteLabelSpectra_FT.FontAngle = 'italic';
             app.NoteLabelSpectra_FT.Position = [252 6 231 22];
             app.NoteLabelSpectra_FT.Text = {'Note: Data will be subset to the stages chosen '; 'in Step 3 before being truncated to X min.'};
-
-            % Create SpectranewtimefTab
-            app.SpectranewtimefTab = uitab(app.TabGroup);
-            app.SpectranewtimefTab.Title = 'Spectra (newtimef)';
-
-            % Create TimeintervalforspectraButtonGroup_ntf
-            app.TimeintervalforspectraButtonGroup_ntf = uibuttongroup(app.SpectranewtimefTab);
-            app.TimeintervalforspectraButtonGroup_ntf.Title = 'Time interval for spectra';
-            app.TimeintervalforspectraButtonGroup_ntf.Position = [11 88 343 79];
-
-            % Create UsealldatainselectedstagesButton_ntf
-            app.UsealldatainselectedstagesButton_ntf = uiradiobutton(app.TimeintervalforspectraButtonGroup_ntf);
-            app.UsealldatainselectedstagesButton_ntf.Text = 'Use all data in selected stages';
-            app.UsealldatainselectedstagesButton_ntf.Position = [11 33 185 22];
-            app.UsealldatainselectedstagesButton_ntf.Value = true;
-
-            % Create CustomtimerangeminStartButton_ntf
-            app.CustomtimerangeminStartButton_ntf = uiradiobutton(app.TimeintervalforspectraButtonGroup_ntf);
-            app.CustomtimerangeminStartButton_ntf.Text = 'Custom time range (min)     Start';
-            app.CustomtimerangeminStartButton_ntf.Position = [11 11 199 22];
-
-            % Create CustomTimeIntervalStart_ntf
-            app.CustomTimeIntervalStart_ntf = uieditfield(app.TimeintervalforspectraButtonGroup_ntf, 'numeric');
-            app.CustomTimeIntervalStart_ntf.Limits = [0 Inf];
-            app.CustomTimeIntervalStart_ntf.RoundFractionalValues = 'on';
-            app.CustomTimeIntervalStart_ntf.ValueChangedFcn = createCallbackFcn(app, @SpectimeInputValueChanged, true);
-            app.CustomTimeIntervalStart_ntf.Position = [212 11 36 22];
-
-            % Create CustomTimeIntervalEnd_ntf
-            app.CustomTimeIntervalEnd_ntf = uieditfield(app.TimeintervalforspectraButtonGroup_ntf, 'numeric');
-            app.CustomTimeIntervalEnd_ntf.Limits = [0 Inf];
-            app.CustomTimeIntervalEnd_ntf.RoundFractionalValues = 'on';
-            app.CustomTimeIntervalEnd_ntf.ValueChangedFcn = createCallbackFcn(app, @SpectimeInputValueChanged, true);
-            app.CustomTimeIntervalEnd_ntf.Position = [296 11 36 22];
-
-            % Create EndLabel_ntf
-            app.EndLabel_ntf = uilabel(app.TimeintervalforspectraButtonGroup_ntf);
-            app.EndLabel_ntf.Position = [266 11 27 22];
-            app.EndLabel_ntf.Text = 'End';
-
-            % Create toEditField_2Label_ntf
-            app.toEditField_2Label_ntf = uilabel(app.SpectranewtimefTab);
-            app.toEditField_2Label_ntf.Position = [279 171 25 22];
-            app.toEditField_2Label_ntf.Text = 'to';
-
-            % Create PlotFreqROIMaximumEditField_ntf
-            app.PlotFreqROIMaximumEditField_ntf = uieditfield(app.SpectranewtimefTab, 'numeric');
-            app.PlotFreqROIMaximumEditField_ntf.Limits = [0 Inf];
-            app.PlotFreqROIMaximumEditField_ntf.Position = [301 171 36 22];
-            app.PlotFreqROIMaximumEditField_ntf.Value = 25;
-
-            % Create Apply60HznotchfilterbeforegeneratingspectraCheckBox_ntf
-            app.Apply60HznotchfilterbeforegeneratingspectraCheckBox_ntf = uicheckbox(app.SpectranewtimefTab);
-            app.Apply60HznotchfilterbeforegeneratingspectraCheckBox_ntf.Text = 'Apply 60 Hz notch filter before generating spectra?';
-            app.Apply60HznotchfilterbeforegeneratingspectraCheckBox_ntf.Position = [11 60 296 22];
-
-            % Create NoteLabelSpectra_ntf
-            app.NoteLabelSpectra_ntf = uilabel(app.SpectranewtimefTab);
-            app.NoteLabelSpectra_ntf.FontSize = 10;
-            app.NoteLabelSpectra_ntf.FontWeight = 'bold';
-            app.NoteLabelSpectra_ntf.FontAngle = 'italic';
-            app.NoteLabelSpectra_ntf.Position = [252 6 231 22];
-            app.NoteLabelSpectra_ntf.Text = {'Note: Data will be subset to the stages chosen '; 'in Step 3 before being truncated to X min.'};
-
-            % Create FrequencyrangeofinterestHzLabel_3
-            app.FrequencyrangeofinterestHzLabel_3 = uilabel(app.SpectranewtimefTab);
-            app.FrequencyrangeofinterestHzLabel_3.Position = [11 171 208 22];
-            app.FrequencyrangeofinterestHzLabel_3.Text = 'Frequency range of interest (Hz):';
-
-            % Create PlotFreqROIMinimumEditField_ntf
-            app.PlotFreqROIMinimumEditField_ntf = uieditfield(app.SpectranewtimefTab, 'numeric');
-            app.PlotFreqROIMinimumEditField_ntf.Limits = [0 Inf];
-            app.PlotFreqROIMinimumEditField_ntf.Position = [233 171 34 22];
 
             % Create PowerHilbertTab
             app.PowerHilbertTab = uitab(app.TabGroup);
@@ -3895,97 +3790,6 @@
             app.ThetaFilterModeDropDown_EnvViewer.Position = [383 151 100 22];
             app.ThetaFilterModeDropDown_EnvViewer.Value = 'none';
 
-            % Create PACMuehlrothTab
-            app.PACMuehlrothTab = uitab(app.TabGroup);
-            app.PACMuehlrothTab.Title = 'PAC (Muehlroth)';
-
-            % Create WIPLabel
-            app.WIPLabel = uilabel(app.PACMuehlrothTab);
-            app.WIPLabel.Position = [192 130 28 22];
-            app.WIPLabel.Text = 'WIP';
-
-            % Create TMRtistryWIPTab
-            app.TMRtistryWIPTab = uitab(app.TabGroup);
-            app.TMRtistryWIPTab.Title = 'TMRtistry (WIP)';
-
-            % Create TMRtistrySettingsButton
-            app.TMRtistrySettingsButton = uibutton(app.TMRtistryWIPTab, 'push');
-            app.TMRtistrySettingsButton.ButtonPushedFcn = createCallbackFcn(app, @TMRtistrySettingsButtonPush, true);
-            app.TMRtistrySettingsButton.Position = [402 50 54 22];
-            app.TMRtistrySettingsButton.Text = 'Import';
-
-            % Create TMRtistrySettingsLampLabel
-            app.TMRtistrySettingsLampLabel = uilabel(app.TMRtistryWIPTab);
-            app.TMRtistrySettingsLampLabel.HorizontalAlignment = 'right';
-            app.TMRtistrySettingsLampLabel.Position = [293 50 103 22];
-            app.TMRtistrySettingsLampLabel.Text = 'TMRtistry Settings';
-
-            % Create TMRtistrySettingsLamp
-            app.TMRtistrySettingsLamp = uilamp(app.TMRtistryWIPTab);
-            app.TMRtistrySettingsLamp.Position = [466 54 13 13];
-            app.TMRtistrySettingsLamp.Color = [1 0 0];
-
-            % Create TMRtistryScriptImportButton
-            app.TMRtistryScriptImportButton = uibutton(app.TMRtistryWIPTab, 'push');
-            app.TMRtistryScriptImportButton.ButtonPushedFcn = createCallbackFcn(app, @TMRtistryScriptButtonPush, true);
-            app.TMRtistryScriptImportButton.Position = [402 20 54 22];
-            app.TMRtistryScriptImportButton.Text = 'Import';
-
-            % Create TMRtistryCustomScriptLampLabel
-            app.TMRtistryCustomScriptLampLabel = uilabel(app.TMRtistryWIPTab);
-            app.TMRtistryCustomScriptLampLabel.HorizontalAlignment = 'right';
-            app.TMRtistryCustomScriptLampLabel.Position = [261 20 135 22];
-            app.TMRtistryCustomScriptLampLabel.Text = 'TMRtistry Custom Script';
-
-            % Create TMRtistryCustomScriptLamp
-            app.TMRtistryCustomScriptLamp = uilamp(app.TMRtistryWIPTab);
-            app.TMRtistryCustomScriptLamp.Position = [466 24 13 13];
-            app.TMRtistryCustomScriptLamp.Color = [1 0 0];
-
-            % Create SpectrogramViewerTab
-            app.SpectrogramViewerTab = uitab(app.TabGroup);
-            app.SpectrogramViewerTab.Title = 'Spectrogram Viewer';
-
-            % Create UnderconstructionGaugeLabel
-            app.UnderconstructionGaugeLabel = uilabel(app.SpectrogramViewerTab);
-            app.UnderconstructionGaugeLabel.HorizontalAlignment = 'center';
-            app.UnderconstructionGaugeLabel.Position = [354 18 116 22];
-            app.UnderconstructionGaugeLabel.Text = 'Under construction...';
-
-            % Create UnderconstructionGauge
-            app.UnderconstructionGauge = uigauge(app.SpectrogramViewerTab, 'linear');
-            app.UnderconstructionGauge.Position = [351 55 119 40];
-
-            % Create HowmanyfrequenciesLabel
-            app.HowmanyfrequenciesLabel = uilabel(app.SpectrogramViewerTab);
-            app.HowmanyfrequenciesLabel.HorizontalAlignment = 'right';
-            app.HowmanyfrequenciesLabel.Position = [5 190 134 22];
-            app.HowmanyfrequenciesLabel.Text = 'How many frequencies?';
-
-            % Create HowmanyfrequenciesEditField
-            app.HowmanyfrequenciesEditField = uieditfield(app.SpectrogramViewerTab, 'text');
-            app.HowmanyfrequenciesEditField.Position = [154 190 100 22];
-
-            % Create WhatelectrodeLabel
-            app.WhatelectrodeLabel = uilabel(app.SpectrogramViewerTab);
-            app.WhatelectrodeLabel.HorizontalAlignment = 'right';
-            app.WhatelectrodeLabel.Position = [46 148 93 22];
-            app.WhatelectrodeLabel.Text = 'What electrode?';
-
-            % Create WhatelectrodeEditField
-            app.WhatelectrodeEditField = uieditfield(app.SpectrogramViewerTab, 'text');
-            app.WhatelectrodeEditField.Position = [154 148 100 22];
-
-            % Create SavetifsCheckBox
-            app.SavetifsCheckBox = uicheckbox(app.SpectrogramViewerTab);
-            app.SavetifsCheckBox.Text = 'Save .tifs?';
-            app.SavetifsCheckBox.Position = [321 190 78 22];
-
-            % Create SavetifmetasCheckBox
-            app.SavetifmetasCheckBox = uicheckbox(app.SpectrogramViewerTab);
-            app.SavetifmetasCheckBox.Text = 'Save .tif metas?';
-            app.SavetifmetasCheckBox.Position = [321 148 108 22];
-
             % Create ModulespecificParametersLabel
             app.ModulespecificParametersLabel = uilabel(app.Step2SelectsignalprocessingapproachPanel);
             app.ModulespecificParametersLabel.FontAngle = 'italic';
@@ -4000,646 +3804,646 @@
 
             % Create AnalysisModuleselectoneDropDown
             app.AnalysisModuleselectoneDropDown = uidropdown(app.Step2SelectsignalprocessingapproachPanel);
-            app.AnalysisModuleselectoneDropDown.Items = {' ', 'Hypnogram', 'Spectra (EEGLAB)', 'Spectra (FieldTrip)', 'Spectra (newtimef)', 'Power (Hilbert)', 'Power (newtimef)', 'Spindle Detection (Ferrarelli)', 'Envelope Viewer', 'TMRtistry (WIP)', 'PAC (Muehlroth)', 'Spectrogram Viewer'};
+            app.AnalysisModuleselectoneDropDown.Items = {' ', 'Hypnogram', 'Spectra (EEGLAB)', 'Spectra (FieldTrip)', 'Power (Hilbert)', 'Power (newtimef)', 'Spindle Detection (Ferrarelli)', 'Envelope Viewer'};
             app.AnalysisModuleselectoneDropDown.ValueChangedFcn = createCallbackFcn(app, @AnalysisModuleselectoneDropDownValueChanged, true);
             app.AnalysisModuleselectoneDropDown.FontName = 'Arial';
             app.AnalysisModuleselectoneDropDown.Position = [209 281 173 22];
-            app.AnalysisModuleselectoneDropDown.Value = ' ';
+            app.AnalysisModuleselectoneDropDown.Value = 'Envelope Viewer';
 
-            % Create Step3InitializeFrequencyBandsPanel
-            app.Step3InitializeFrequencyBandsPanel = uipanel(app.UIFigure);
-            app.Step3InitializeFrequencyBandsPanel.Title = 'Step 3: Initialize Frequency Bands';
-            app.Step3InitializeFrequencyBandsPanel.SizeChangedFcn = createCallbackFcn(app, @SubdeltaCheckBoxValueChanged, true);
-            app.Step3InitializeFrequencyBandsPanel.FontWeight = 'bold';
-            app.Step3InitializeFrequencyBandsPanel.FontSize = 15;
-            app.Step3InitializeFrequencyBandsPanel.Position = [11 10 600 347];
+            % Create Step3SelectbandsandstagesPanel
+            app.Step3SelectbandsandstagesPanel = uipanel(app.UIFigure);
+            app.Step3SelectbandsandstagesPanel.Title = 'Step 3: Select bands and stages';
+            app.Step3SelectbandsandstagesPanel.SizeChangedFcn = createCallbackFcn(app, @SubdeltaCheckBoxValueChanged, true);
+            app.Step3SelectbandsandstagesPanel.FontWeight = 'bold';
+            app.Step3SelectbandsandstagesPanel.FontSize = 15;
+            app.Step3SelectbandsandstagesPanel.Position = [11 10 600 347];
 
             % Create SubdeltaCheckBox
-            app.SubdeltaCheckBox = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SubdeltaCheckBox = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SubdeltaCheckBox.ValueChangedFcn = createCallbackFcn(app, @SubdeltaCheckBoxValueChanged, true);
             app.SubdeltaCheckBox.Enable = 'off';
             app.SubdeltaCheckBox.Text = 'Subdelta';
             app.SubdeltaCheckBox.Position = [10 261 69 22];
 
             % Create DeltaCheckBox
-            app.DeltaCheckBox = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.DeltaCheckBox = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.DeltaCheckBox.ValueChangedFcn = createCallbackFcn(app, @DeltaCheckBoxValueChanged, true);
             app.DeltaCheckBox.Enable = 'off';
             app.DeltaCheckBox.Text = 'Delta';
             app.DeltaCheckBox.Position = [10 234 50 22];
 
             % Create ThetaCheckBox
-            app.ThetaCheckBox = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.ThetaCheckBox = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.ThetaCheckBox.ValueChangedFcn = createCallbackFcn(app, @ThetaCheckBoxValueChanged, true);
             app.ThetaCheckBox.Enable = 'off';
             app.ThetaCheckBox.Text = 'Theta';
             app.ThetaCheckBox.Position = [10 207 53 22];
 
             % Create AlphaCheckBox
-            app.AlphaCheckBox = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.AlphaCheckBox = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.AlphaCheckBox.ValueChangedFcn = createCallbackFcn(app, @AlphaCheckBoxValueChanged, true);
             app.AlphaCheckBox.Enable = 'off';
             app.AlphaCheckBox.Text = 'Alpha';
             app.AlphaCheckBox.Position = [10 180 53 22];
 
             % Create SigmaCheckBox
-            app.SigmaCheckBox = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SigmaCheckBox = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SigmaCheckBox.ValueChangedFcn = createCallbackFcn(app, @SigmaCheckBoxValueChanged, true);
             app.SigmaCheckBox.Enable = 'off';
             app.SigmaCheckBox.Text = 'Sigma';
             app.SigmaCheckBox.Position = [10 153 56 22];
 
             % Create BetaCheckBox
-            app.BetaCheckBox = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.BetaCheckBox = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.BetaCheckBox.ValueChangedFcn = createCallbackFcn(app, @BetaCheckBoxValueChanged, true);
             app.BetaCheckBox.Enable = 'off';
             app.BetaCheckBox.Text = 'Beta';
             app.BetaCheckBox.Position = [10 126 47 22];
 
             % Create GammalowCheckBox
-            app.GammalowCheckBox = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.GammalowCheckBox = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.GammalowCheckBox.ValueChangedFcn = createCallbackFcn(app, @GammalowCheckBoxValueChanged, true);
             app.GammalowCheckBox.Enable = 'off';
             app.GammalowCheckBox.Text = 'Gamma (low)';
             app.GammalowCheckBox.Position = [10 99 94 22];
 
             % Create FullbandCheckBox
-            app.FullbandCheckBox = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.FullbandCheckBox = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.FullbandCheckBox.ValueChangedFcn = createCallbackFcn(app, @FullbandCheckBoxValueChanged, true);
             app.FullbandCheckBox.Enable = 'off';
             app.FullbandCheckBox.Text = 'Full Band';
             app.FullbandCheckBox.Position = [10 30 73 22];
 
             % Create EEGBandsLabel
-            app.EEGBandsLabel = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.EEGBandsLabel = uilabel(app.Step3SelectbandsandstagesPanel);
             app.EEGBandsLabel.FontWeight = 'bold';
             app.EEGBandsLabel.Position = [13 301 71 22];
             app.EEGBandsLabel.Text = 'EEG Bands';
 
             % Create FrequencyBandwidthLabel
-            app.FrequencyBandwidthLabel = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.FrequencyBandwidthLabel = uilabel(app.Step3SelectbandsandstagesPanel);
             app.FrequencyBandwidthLabel.FontWeight = 'bold';
             app.FrequencyBandwidthLabel.Position = [109 301 131 22];
             app.FrequencyBandwidthLabel.Text = 'Frequency Bandwidth';
 
             % Create SleepStagesLabel
-            app.SleepStagesLabel = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.SleepStagesLabel = uilabel(app.Step3SelectbandsandstagesPanel);
             app.SleepStagesLabel.FontWeight = 'bold';
             app.SleepStagesLabel.Position = [293 301 80 22];
             app.SleepStagesLabel.Text = 'Sleep Stages';
 
             % Create SubdeltaLowLimFreq
-            app.SubdeltaLowLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.SubdeltaLowLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.SubdeltaLowLimFreq.HorizontalAlignment = 'center';
             app.SubdeltaLowLimFreq.Enable = 'off';
             app.SubdeltaLowLimFreq.Position = [116 261 33 22];
             app.SubdeltaLowLimFreq.Value = 0.1;
 
             % Create DeltaLowLimFreq
-            app.DeltaLowLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.DeltaLowLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.DeltaLowLimFreq.HorizontalAlignment = 'center';
             app.DeltaLowLimFreq.Enable = 'off';
             app.DeltaLowLimFreq.Position = [116 234 33 22];
             app.DeltaLowLimFreq.Value = 0.5;
 
             % Create ThetaLowLimFreq
-            app.ThetaLowLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.ThetaLowLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.ThetaLowLimFreq.HorizontalAlignment = 'center';
             app.ThetaLowLimFreq.Enable = 'off';
             app.ThetaLowLimFreq.Position = [116 207 33 22];
             app.ThetaLowLimFreq.Value = 4;
 
             % Create AlphaLowLimFreq
-            app.AlphaLowLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.AlphaLowLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.AlphaLowLimFreq.HorizontalAlignment = 'center';
             app.AlphaLowLimFreq.Enable = 'off';
             app.AlphaLowLimFreq.Position = [116 180 33 22];
             app.AlphaLowLimFreq.Value = 8;
 
             % Create SigmaLowLimFreq
-            app.SigmaLowLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.SigmaLowLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.SigmaLowLimFreq.HorizontalAlignment = 'center';
             app.SigmaLowLimFreq.Enable = 'off';
             app.SigmaLowLimFreq.Position = [116 153 33 22];
             app.SigmaLowLimFreq.Value = 12;
 
             % Create BetaLowLimFreq
-            app.BetaLowLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.BetaLowLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.BetaLowLimFreq.HorizontalAlignment = 'center';
             app.BetaLowLimFreq.Enable = 'off';
             app.BetaLowLimFreq.Position = [116 126 33 22];
             app.BetaLowLimFreq.Value = 16;
 
             % Create GammalowLowLimFreq
-            app.GammalowLowLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.GammalowLowLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.GammalowLowLimFreq.HorizontalAlignment = 'center';
             app.GammalowLowLimFreq.Enable = 'off';
             app.GammalowLowLimFreq.Position = [116 99 33 22];
             app.GammalowLowLimFreq.Value = 30;
 
             % Create FullbandLowLimFreq
-            app.FullbandLowLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.FullbandLowLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.FullbandLowLimFreq.RoundFractionalValues = 'on';
             app.FullbandLowLimFreq.HorizontalAlignment = 'center';
             app.FullbandLowLimFreq.Enable = 'off';
             app.FullbandLowLimFreq.Position = [116 30 33 22];
 
             % Create SubdeltatoLabel
-            app.SubdeltatoLabel = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.SubdeltatoLabel = uilabel(app.Step3SelectbandsandstagesPanel);
             app.SubdeltatoLabel.Position = [158 264 12 17];
             app.SubdeltatoLabel.Text = 'to';
 
             % Create DeltatoLabel_2
-            app.DeltatoLabel_2 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.DeltatoLabel_2 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.DeltatoLabel_2.Position = [158 237 12 17];
             app.DeltatoLabel_2.Text = 'to';
 
             % Create ThetatoLabel_3
-            app.ThetatoLabel_3 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.ThetatoLabel_3 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.ThetatoLabel_3.Position = [158 210 12 17];
             app.ThetatoLabel_3.Text = 'to';
 
             % Create AlphatoLabel_4
-            app.AlphatoLabel_4 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.AlphatoLabel_4 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.AlphatoLabel_4.Position = [158 183 12 17];
             app.AlphatoLabel_4.Text = 'to';
 
             % Create SigmatoLabel_5
-            app.SigmatoLabel_5 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.SigmatoLabel_5 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.SigmatoLabel_5.Position = [158 156 12 17];
             app.SigmatoLabel_5.Text = 'to';
 
             % Create BetatoLabel_6
-            app.BetatoLabel_6 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.BetatoLabel_6 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.BetatoLabel_6.Position = [158 129 12 17];
             app.BetatoLabel_6.Text = 'to';
 
             % Create GammalowtoLabel_7
-            app.GammalowtoLabel_7 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.GammalowtoLabel_7 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.GammalowtoLabel_7.Position = [158 102 12 17];
             app.GammalowtoLabel_7.Text = 'to';
 
             % Create FullbandtoLabel
-            app.FullbandtoLabel = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.FullbandtoLabel = uilabel(app.Step3SelectbandsandstagesPanel);
             app.FullbandtoLabel.Position = [158 33 12 17];
             app.FullbandtoLabel.Text = 'to';
 
             % Create SubdeltaHighLimFreq
-            app.SubdeltaHighLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.SubdeltaHighLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.SubdeltaHighLimFreq.HorizontalAlignment = 'center';
             app.SubdeltaHighLimFreq.Enable = 'off';
             app.SubdeltaHighLimFreq.Position = [178 261 33 22];
             app.SubdeltaHighLimFreq.Value = 0.5;
 
             % Create DeltaHighLimFreq
-            app.DeltaHighLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.DeltaHighLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.DeltaHighLimFreq.HorizontalAlignment = 'center';
             app.DeltaHighLimFreq.Enable = 'off';
             app.DeltaHighLimFreq.Position = [178 234 33 22];
             app.DeltaHighLimFreq.Value = 4;
 
             % Create ThetaHighLimFreq
-            app.ThetaHighLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.ThetaHighLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.ThetaHighLimFreq.HorizontalAlignment = 'center';
             app.ThetaHighLimFreq.Enable = 'off';
             app.ThetaHighLimFreq.Position = [178 207 33 22];
             app.ThetaHighLimFreq.Value = 8;
 
             % Create AlphaHighLimFreq
-            app.AlphaHighLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.AlphaHighLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.AlphaHighLimFreq.HorizontalAlignment = 'center';
             app.AlphaHighLimFreq.Enable = 'off';
             app.AlphaHighLimFreq.Position = [178 180 33 22];
             app.AlphaHighLimFreq.Value = 12;
 
             % Create SigmaHighLimFreq
-            app.SigmaHighLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.SigmaHighLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.SigmaHighLimFreq.HorizontalAlignment = 'center';
             app.SigmaHighLimFreq.Enable = 'off';
             app.SigmaHighLimFreq.Position = [178 153 33 22];
             app.SigmaHighLimFreq.Value = 16;
 
             % Create BetaHighLimFreq
-            app.BetaHighLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.BetaHighLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.BetaHighLimFreq.HorizontalAlignment = 'center';
             app.BetaHighLimFreq.Enable = 'off';
             app.BetaHighLimFreq.Position = [178 126 33 22];
             app.BetaHighLimFreq.Value = 30;
 
             % Create GammalowHighLimFreq
-            app.GammalowHighLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.GammalowHighLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.GammalowHighLimFreq.HorizontalAlignment = 'center';
             app.GammalowHighLimFreq.Enable = 'off';
             app.GammalowHighLimFreq.Position = [178 99 33 22];
             app.GammalowHighLimFreq.Value = 50;
 
             % Create FullbandHighLimFreq
-            app.FullbandHighLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.FullbandHighLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.FullbandHighLimFreq.HorizontalAlignment = 'center';
             app.FullbandHighLimFreq.Enable = 'off';
             app.FullbandHighLimFreq.Position = [178 30 33 22];
             app.FullbandHighLimFreq.Value = 80;
 
             % Create HzLabel
-            app.HzLabel = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.HzLabel = uilabel(app.Step3SelectbandsandstagesPanel);
             app.HzLabel.Position = [223 261 25 22];
             app.HzLabel.Text = 'Hz';
 
             % Create HzLabel_2
-            app.HzLabel_2 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.HzLabel_2 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.HzLabel_2.Position = [223 234 25 22];
             app.HzLabel_2.Text = 'Hz';
 
             % Create HzLabel_3
-            app.HzLabel_3 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.HzLabel_3 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.HzLabel_3.Position = [223 207 25 22];
             app.HzLabel_3.Text = 'Hz';
 
             % Create HzLabel_4
-            app.HzLabel_4 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.HzLabel_4 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.HzLabel_4.Position = [223 180 25 22];
             app.HzLabel_4.Text = 'Hz';
 
             % Create HzLabel_5
-            app.HzLabel_5 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.HzLabel_5 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.HzLabel_5.Position = [223 153 25 22];
             app.HzLabel_5.Text = 'Hz';
 
             % Create HzLabel_6
-            app.HzLabel_6 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.HzLabel_6 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.HzLabel_6.Position = [223 126 25 22];
             app.HzLabel_6.Text = 'Hz';
 
             % Create HzLabel_7
-            app.HzLabel_7 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.HzLabel_7 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.HzLabel_7.Position = [223 99 25 22];
             app.HzLabel_7.Text = 'Hz';
 
             % Create HzLabel_9
-            app.HzLabel_9 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.HzLabel_9 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.HzLabel_9.Position = [223 30 25 22];
             app.HzLabel_9.Text = 'Hz';
 
             % Create SubdeltaN1
-            app.SubdeltaN1 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SubdeltaN1 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SubdeltaN1.Enable = 'off';
             app.SubdeltaN1.Text = '';
             app.SubdeltaN1.Position = [273 261 14 22];
 
             % Create DeltaN1
-            app.DeltaN1 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.DeltaN1 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.DeltaN1.Enable = 'off';
             app.DeltaN1.Text = '';
             app.DeltaN1.Position = [273 234 14 22];
 
             % Create ThetaN1
-            app.ThetaN1 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.ThetaN1 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.ThetaN1.Enable = 'off';
             app.ThetaN1.Text = '';
             app.ThetaN1.Position = [273 207 14 22];
 
             % Create AlphaN1
-            app.AlphaN1 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.AlphaN1 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.AlphaN1.Enable = 'off';
             app.AlphaN1.Text = '';
             app.AlphaN1.Position = [273 180 14 22];
 
             % Create SigmaN1
-            app.SigmaN1 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SigmaN1 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SigmaN1.Enable = 'off';
             app.SigmaN1.Text = '';
             app.SigmaN1.Position = [273 153 14 22];
 
             % Create BetaN1
-            app.BetaN1 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.BetaN1 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.BetaN1.Enable = 'off';
             app.BetaN1.Text = '';
             app.BetaN1.Position = [273 126 14 22];
 
             % Create GammalowN1
-            app.GammalowN1 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.GammalowN1 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.GammalowN1.Enable = 'off';
             app.GammalowN1.Text = '';
             app.GammalowN1.Position = [273 99 14 22];
 
             % Create FullbandN1
-            app.FullbandN1 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.FullbandN1 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.FullbandN1.Enable = 'off';
             app.FullbandN1.Text = '';
             app.FullbandN1.Position = [273 30 14 22];
 
             % Create N1Label
-            app.N1Label = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.N1Label = uilabel(app.Step3SelectbandsandstagesPanel);
             app.N1Label.HorizontalAlignment = 'center';
             app.N1Label.Position = [267 281 25 22];
             app.N1Label.Text = 'N1';
 
             % Create SubdeltaN2
-            app.SubdeltaN2 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SubdeltaN2 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SubdeltaN2.Enable = 'off';
             app.SubdeltaN2.Text = '';
             app.SubdeltaN2.Position = [295 261 14 22];
 
             % Create DeltaN2
-            app.DeltaN2 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.DeltaN2 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.DeltaN2.Enable = 'off';
             app.DeltaN2.Text = '';
             app.DeltaN2.Position = [295 234 14 22];
 
             % Create ThetaN2
-            app.ThetaN2 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.ThetaN2 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.ThetaN2.Enable = 'off';
             app.ThetaN2.Text = '';
             app.ThetaN2.Position = [295 207 14 22];
 
             % Create AlphaN2
-            app.AlphaN2 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.AlphaN2 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.AlphaN2.Enable = 'off';
             app.AlphaN2.Text = '';
             app.AlphaN2.Position = [295 180 14 22];
 
             % Create SigmaN2
-            app.SigmaN2 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SigmaN2 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SigmaN2.Enable = 'off';
             app.SigmaN2.Text = '';
             app.SigmaN2.Position = [295 153 14 22];
 
             % Create BetaN2
-            app.BetaN2 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.BetaN2 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.BetaN2.Enable = 'off';
             app.BetaN2.Text = '';
             app.BetaN2.Position = [295 126 14 22];
 
             % Create GammalowN2
-            app.GammalowN2 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.GammalowN2 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.GammalowN2.Enable = 'off';
             app.GammalowN2.Text = '';
             app.GammalowN2.Position = [295 99 14 22];
 
             % Create FullbandN2
-            app.FullbandN2 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.FullbandN2 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.FullbandN2.Enable = 'off';
             app.FullbandN2.Text = '';
             app.FullbandN2.Position = [295 30 14 22];
 
             % Create N2Label
-            app.N2Label = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.N2Label = uilabel(app.Step3SelectbandsandstagesPanel);
             app.N2Label.HorizontalAlignment = 'center';
             app.N2Label.Position = [289 281 25 22];
             app.N2Label.Text = 'N2';
 
             % Create SubdeltaN3
-            app.SubdeltaN3 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SubdeltaN3 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SubdeltaN3.Enable = 'off';
             app.SubdeltaN3.Text = '';
             app.SubdeltaN3.Position = [317 261 14 22];
 
             % Create DeltaN3
-            app.DeltaN3 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.DeltaN3 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.DeltaN3.Enable = 'off';
             app.DeltaN3.Text = '';
             app.DeltaN3.Position = [317 234 14 22];
 
             % Create ThetaN3
-            app.ThetaN3 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.ThetaN3 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.ThetaN3.Enable = 'off';
             app.ThetaN3.Text = '';
             app.ThetaN3.Position = [317 207 14 22];
 
             % Create AlphaN3
-            app.AlphaN3 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.AlphaN3 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.AlphaN3.Enable = 'off';
             app.AlphaN3.Text = '';
             app.AlphaN3.Position = [317 180 14 22];
 
             % Create SigmaN3
-            app.SigmaN3 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SigmaN3 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SigmaN3.Enable = 'off';
             app.SigmaN3.Text = '';
             app.SigmaN3.Position = [317 153 14 22];
 
             % Create BetaN3
-            app.BetaN3 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.BetaN3 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.BetaN3.Enable = 'off';
             app.BetaN3.Text = '';
             app.BetaN3.Position = [317 126 14 22];
 
             % Create GammalowN3
-            app.GammalowN3 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.GammalowN3 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.GammalowN3.Enable = 'off';
             app.GammalowN3.Text = '';
             app.GammalowN3.Position = [317 99 14 22];
 
             % Create FullbandN3
-            app.FullbandN3 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.FullbandN3 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.FullbandN3.Enable = 'off';
             app.FullbandN3.Text = '';
             app.FullbandN3.Position = [317 30 14 22];
 
             % Create N3Label
-            app.N3Label = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.N3Label = uilabel(app.Step3SelectbandsandstagesPanel);
             app.N3Label.HorizontalAlignment = 'center';
             app.N3Label.Position = [311 281 25 22];
             app.N3Label.Text = 'N3';
 
             % Create SubdeltaR
-            app.SubdeltaR = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SubdeltaR = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SubdeltaR.Enable = 'off';
             app.SubdeltaR.Text = '';
             app.SubdeltaR.Position = [361 261 14 22];
 
             % Create DeltaR
-            app.DeltaR = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.DeltaR = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.DeltaR.Enable = 'off';
             app.DeltaR.Text = '';
             app.DeltaR.Position = [361 234 14 22];
 
             % Create ThetaR
-            app.ThetaR = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.ThetaR = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.ThetaR.Enable = 'off';
             app.ThetaR.Text = '';
             app.ThetaR.Position = [361 207 14 22];
 
             % Create AlphaR
-            app.AlphaR = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.AlphaR = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.AlphaR.Enable = 'off';
             app.AlphaR.Text = '';
             app.AlphaR.Position = [361 180 14 22];
 
             % Create SigmaR
-            app.SigmaR = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SigmaR = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SigmaR.Enable = 'off';
             app.SigmaR.Text = '';
             app.SigmaR.Position = [361 153 14 22];
 
             % Create BetaR
-            app.BetaR = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.BetaR = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.BetaR.Enable = 'off';
             app.BetaR.Text = '';
             app.BetaR.Position = [361 126 14 22];
 
             % Create GammalowR
-            app.GammalowR = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.GammalowR = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.GammalowR.Enable = 'off';
             app.GammalowR.Text = '';
             app.GammalowR.Position = [361 99 14 22];
 
             % Create FullbandR
-            app.FullbandR = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.FullbandR = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.FullbandR.Enable = 'off';
             app.FullbandR.Text = '';
             app.FullbandR.Position = [361 30 14 22];
 
             % Create RLabel
-            app.RLabel = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.RLabel = uilabel(app.Step3SelectbandsandstagesPanel);
             app.RLabel.HorizontalAlignment = 'center';
             app.RLabel.Position = [355 281 25 22];
             app.RLabel.Text = 'R';
 
             % Create SubdeltaW
-            app.SubdeltaW = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SubdeltaW = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SubdeltaW.Enable = 'off';
             app.SubdeltaW.Text = '';
             app.SubdeltaW.Position = [383 261 14 22];
 
             % Create DeltaW
-            app.DeltaW = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.DeltaW = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.DeltaW.Enable = 'off';
             app.DeltaW.Text = '';
             app.DeltaW.Position = [383 234 14 22];
 
             % Create ThetaW
-            app.ThetaW = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.ThetaW = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.ThetaW.Enable = 'off';
             app.ThetaW.Text = '';
             app.ThetaW.Position = [383 207 14 22];
 
             % Create AlphaW
-            app.AlphaW = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.AlphaW = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.AlphaW.Enable = 'off';
             app.AlphaW.Text = '';
             app.AlphaW.Position = [383 180 14 22];
 
             % Create SigmaW
-            app.SigmaW = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SigmaW = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SigmaW.Enable = 'off';
             app.SigmaW.Text = '';
             app.SigmaW.Position = [383 153 14 22];
 
             % Create BetaW
-            app.BetaW = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.BetaW = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.BetaW.Enable = 'off';
             app.BetaW.Text = '';
             app.BetaW.Position = [383 126 14 22];
 
             % Create GammalowW
-            app.GammalowW = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.GammalowW = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.GammalowW.Enable = 'off';
             app.GammalowW.Text = '';
             app.GammalowW.Position = [383 99 14 22];
 
             % Create FullbandW
-            app.FullbandW = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.FullbandW = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.FullbandW.Enable = 'off';
             app.FullbandW.Text = '';
             app.FullbandW.Position = [383 30 14 22];
 
             % Create WLabel
-            app.WLabel = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.WLabel = uilabel(app.Step3SelectbandsandstagesPanel);
             app.WLabel.HorizontalAlignment = 'center';
             app.WLabel.Position = [377 281 25 22];
             app.WLabel.Text = 'W';
 
             % Create SubdeltaN4
-            app.SubdeltaN4 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SubdeltaN4 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SubdeltaN4.Enable = 'off';
             app.SubdeltaN4.Text = '';
             app.SubdeltaN4.Position = [339 261 14 22];
 
             % Create DeltaN4
-            app.DeltaN4 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.DeltaN4 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.DeltaN4.Enable = 'off';
             app.DeltaN4.Text = '';
             app.DeltaN4.Position = [339 234 14 22];
 
             % Create ThetaN4
-            app.ThetaN4 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.ThetaN4 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.ThetaN4.Enable = 'off';
             app.ThetaN4.Text = '';
             app.ThetaN4.Position = [339 207 14 22];
 
             % Create AlphaN4
-            app.AlphaN4 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.AlphaN4 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.AlphaN4.Enable = 'off';
             app.AlphaN4.Text = '';
             app.AlphaN4.Position = [339 180 14 22];
 
             % Create SigmaN4
-            app.SigmaN4 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SigmaN4 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SigmaN4.Enable = 'off';
             app.SigmaN4.Text = '';
             app.SigmaN4.Position = [339 153 14 22];
 
             % Create BetaN4
-            app.BetaN4 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.BetaN4 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.BetaN4.Enable = 'off';
             app.BetaN4.Text = '';
             app.BetaN4.Position = [339 126 14 22];
 
             % Create GammalowN4
-            app.GammalowN4 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.GammalowN4 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.GammalowN4.Enable = 'off';
             app.GammalowN4.Text = '';
             app.GammalowN4.Position = [339 99 14 22];
 
             % Create FullbandN4
-            app.FullbandN4 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.FullbandN4 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.FullbandN4.Enable = 'off';
             app.FullbandN4.Text = '';
             app.FullbandN4.Position = [339 30 14 22];
 
             % Create N4Label
-            app.N4Label = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.N4Label = uilabel(app.Step3SelectbandsandstagesPanel);
             app.N4Label.HorizontalAlignment = 'center';
             app.N4Label.Position = [333 281 25 22];
             app.N4Label.Text = 'N4';
 
             % Create ArtifactThresholdLabel
-            app.ArtifactThresholdLabel = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.ArtifactThresholdLabel = uilabel(app.Step3SelectbandsandstagesPanel);
             app.ArtifactThresholdLabel.FontWeight = 'bold';
             app.ArtifactThresholdLabel.Position = [422 301 109 22];
             app.ArtifactThresholdLabel.Text = 'Artifact Threshold';
 
             % Create SubdeltaArtifact
-            app.SubdeltaArtifact = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.SubdeltaArtifact = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.SubdeltaArtifact.HorizontalAlignment = 'center';
             app.SubdeltaArtifact.Enable = 'off';
             app.SubdeltaArtifact.Position = [460 261 33 22];
             app.SubdeltaArtifact.Value = 250;
 
             % Create DeltaArtifact
-            app.DeltaArtifact = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.DeltaArtifact = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.DeltaArtifact.HorizontalAlignment = 'center';
             app.DeltaArtifact.Enable = 'off';
             app.DeltaArtifact.Position = [460 234 33 22];
             app.DeltaArtifact.Value = 250;
 
             % Create ThetaArtifact
-            app.ThetaArtifact = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.ThetaArtifact = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.ThetaArtifact.HorizontalAlignment = 'center';
             app.ThetaArtifact.Enable = 'off';
             app.ThetaArtifact.Position = [460 207 33 22];
             app.ThetaArtifact.Value = 150;
 
             % Create AlphaArtifact
-            app.AlphaArtifact = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.AlphaArtifact = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.AlphaArtifact.HorizontalAlignment = 'center';
             app.AlphaArtifact.Enable = 'off';
             app.AlphaArtifact.Position = [460 180 33 22];
             app.AlphaArtifact.Value = 100;
 
             % Create SigmaArtifact
-            app.SigmaArtifact = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.SigmaArtifact = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.SigmaArtifact.ValueChangedFcn = createCallbackFcn(app, @SigmaCheckBoxValueChanged, true);
             app.SigmaArtifact.HorizontalAlignment = 'center';
             app.SigmaArtifact.Enable = 'off';
@@ -4647,119 +4451,119 @@
             app.SigmaArtifact.Value = 75;
 
             % Create BetaArtifact
-            app.BetaArtifact = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.BetaArtifact = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.BetaArtifact.HorizontalAlignment = 'center';
             app.BetaArtifact.Enable = 'off';
             app.BetaArtifact.Position = [460 126 33 22];
             app.BetaArtifact.Value = 75;
 
             % Create GammalowArtifact
-            app.GammalowArtifact = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.GammalowArtifact = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.GammalowArtifact.HorizontalAlignment = 'center';
             app.GammalowArtifact.Enable = 'off';
             app.GammalowArtifact.Position = [460 99 33 22];
             app.GammalowArtifact.Value = 75;
 
             % Create FullbandArtifact
-            app.FullbandArtifact = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.FullbandArtifact = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.FullbandArtifact.HorizontalAlignment = 'center';
             app.FullbandArtifact.Enable = 'off';
             app.FullbandArtifact.Position = [460 30 33 22];
 
             % Create SleepbandCheckBox
-            app.SleepbandCheckBox = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SleepbandCheckBox = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SleepbandCheckBox.ValueChangedFcn = createCallbackFcn(app, @SleepbandCheckBoxValueChanged, true);
             app.SleepbandCheckBox.Enable = 'off';
             app.SleepbandCheckBox.Text = 'Sleep Band';
             app.SleepbandCheckBox.Position = [10 4 84 22];
 
             % Create SleepbandLowLimFreq
-            app.SleepbandLowLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.SleepbandLowLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.SleepbandLowLimFreq.HorizontalAlignment = 'center';
             app.SleepbandLowLimFreq.Enable = 'off';
             app.SleepbandLowLimFreq.Position = [116 4 33 22];
             app.SleepbandLowLimFreq.Value = 0.5;
 
             % Create SleepbandtoLabel
-            app.SleepbandtoLabel = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.SleepbandtoLabel = uilabel(app.Step3SelectbandsandstagesPanel);
             app.SleepbandtoLabel.Position = [158 7 12 17];
             app.SleepbandtoLabel.Text = 'to';
 
             % Create SleepbandHighLimFreq
-            app.SleepbandHighLimFreq = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.SleepbandHighLimFreq = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.SleepbandHighLimFreq.HorizontalAlignment = 'center';
             app.SleepbandHighLimFreq.Enable = 'off';
             app.SleepbandHighLimFreq.Position = [178 4 33 22];
             app.SleepbandHighLimFreq.Value = 20;
 
             % Create HzLabel_10
-            app.HzLabel_10 = uilabel(app.Step3InitializeFrequencyBandsPanel);
+            app.HzLabel_10 = uilabel(app.Step3SelectbandsandstagesPanel);
             app.HzLabel_10.Position = [223 4 25 22];
             app.HzLabel_10.Text = 'Hz';
 
             % Create SleepbandN1
-            app.SleepbandN1 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SleepbandN1 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SleepbandN1.Enable = 'off';
             app.SleepbandN1.Text = '';
             app.SleepbandN1.Position = [273 4 14 22];
 
             % Create SleepbandN2
-            app.SleepbandN2 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SleepbandN2 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SleepbandN2.Enable = 'off';
             app.SleepbandN2.Text = '';
             app.SleepbandN2.Position = [295 4 14 22];
 
             % Create SleepbandN3
-            app.SleepbandN3 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SleepbandN3 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SleepbandN3.Enable = 'off';
             app.SleepbandN3.Text = '';
             app.SleepbandN3.Position = [317 4 14 22];
 
             % Create SleepbandR
-            app.SleepbandR = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SleepbandR = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SleepbandR.Enable = 'off';
             app.SleepbandR.Text = '';
             app.SleepbandR.Position = [361 4 14 22];
 
             % Create SleepbandW
-            app.SleepbandW = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SleepbandW = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SleepbandW.Enable = 'off';
             app.SleepbandW.Text = '';
             app.SleepbandW.Position = [383 4 14 22];
 
             % Create SleepbandN4
-            app.SleepbandN4 = uicheckbox(app.Step3InitializeFrequencyBandsPanel);
+            app.SleepbandN4 = uicheckbox(app.Step3SelectbandsandstagesPanel);
             app.SleepbandN4.Enable = 'off';
             app.SleepbandN4.Text = '';
             app.SleepbandN4.Position = [339 4 14 22];
 
             % Create SleepbandArtifact
-            app.SleepbandArtifact = uieditfield(app.Step3InitializeFrequencyBandsPanel, 'numeric');
+            app.SleepbandArtifact = uieditfield(app.Step3SelectbandsandstagesPanel, 'numeric');
             app.SleepbandArtifact.HorizontalAlignment = 'center';
             app.SleepbandArtifact.Enable = 'off';
             app.SleepbandArtifact.Position = [460 4 33 22];
 
             % Create AllStagesButton
-            app.AllStagesButton = uibutton(app.Step3InitializeFrequencyBandsPanel, 'push');
+            app.AllStagesButton = uibutton(app.Step3SelectbandsandstagesPanel, 'push');
             app.AllStagesButton.ButtonPushedFcn = createCallbackFcn(app, @AllStagesButtonPushed, true);
             app.AllStagesButton.Position = [498 4 100 22];
             app.AllStagesButton.Text = 'All Stages';
 
             % Create AllBandsButton
-            app.AllBandsButton = uibutton(app.Step3InitializeFrequencyBandsPanel, 'push');
+            app.AllBandsButton = uibutton(app.Step3SelectbandsandstagesPanel, 'push');
             app.AllBandsButton.ButtonPushedFcn = createCallbackFcn(app, @AllBandsButtonPushed, true);
             app.AllBandsButton.Position = [498 30 100 22];
             app.AllBandsButton.Text = 'All Bands';
 
-            % Create Step4OptionalSettingsPanel
-            app.Step4OptionalSettingsPanel = uipanel(app.UIFigure);
-            app.Step4OptionalSettingsPanel.Title = 'Step 4: Optional Settings';
-            app.Step4OptionalSettingsPanel.FontWeight = 'bold';
-            app.Step4OptionalSettingsPanel.FontSize = 15;
-            app.Step4OptionalSettingsPanel.Position = [621 74 504 283];
+            % Create Step4OthersettingsPanel
+            app.Step4OthersettingsPanel = uipanel(app.UIFigure);
+            app.Step4OthersettingsPanel.Title = 'Step 4: Other settings';
+            app.Step4OthersettingsPanel.FontWeight = 'bold';
+            app.Step4OthersettingsPanel.FontSize = 15;
+            app.Step4OthersettingsPanel.Position = [621 74 504 283];
 
             % Create ForcerecreationofEEGLABsetfilesCheckBox
-            app.ForcerecreationofEEGLABsetfilesCheckBox = uicheckbox(app.Step4OptionalSettingsPanel);
+            app.ForcerecreationofEEGLABsetfilesCheckBox = uicheckbox(app.Step4OthersettingsPanel);
             app.ForcerecreationofEEGLABsetfilesCheckBox.ValueChangedFcn = createCallbackFcn(app, @ForcerecreationofEEGLABsetfilesCheckBoxValueChanged, true);
             app.ForcerecreationofEEGLABsetfilesCheckBox.Text = 'Force recreation of EEGLAB .set files';
             app.ForcerecreationofEEGLABsetfilesCheckBox.FontWeight = 'bold';
@@ -4767,19 +4571,19 @@
             app.ForcerecreationofEEGLABsetfilesCheckBox.Value = true;
 
             % Create DownsampletoHzCheckBox
-            app.DownsampletoHzCheckBox = uicheckbox(app.Step4OptionalSettingsPanel);
+            app.DownsampletoHzCheckBox = uicheckbox(app.Step4OthersettingsPanel);
             app.DownsampletoHzCheckBox.Text = 'Downsample to                Hz';
             app.DownsampletoHzCheckBox.Position = [290 101 173 22];
 
             % Create SampRateisHighLabel
-            app.SampRateisHighLabel = uilabel(app.Step4OptionalSettingsPanel);
+            app.SampRateisHighLabel = uilabel(app.Step4OthersettingsPanel);
             app.SampRateisHighLabel.FontSize = 10;
             app.SampRateisHighLabel.FontAngle = 'italic';
             app.SampRateisHighLabel.Position = [290 129 209 33];
             app.SampRateisHighLabel.Text = {'EEG sample rate is high. You may want to'; 'downsample to a lower sampling frequency to'; 'improve compute times.'; ''};
 
             % Create RereferenceEEGDatatoButtonGroup
-            app.RereferenceEEGDatatoButtonGroup = uibuttongroup(app.Step4OptionalSettingsPanel);
+            app.RereferenceEEGDatatoButtonGroup = uibuttongroup(app.Step4OthersettingsPanel);
             app.RereferenceEEGDatatoButtonGroup.SelectionChangedFcn = createCallbackFcn(app, @RereferenceEEGDatatoButtonGroupSelectionChanged, true);
             app.RereferenceEEGDatatoButtonGroup.Title = 'Re-reference EEG Data to...';
             app.RereferenceEEGDatatoButtonGroup.FontWeight = 'bold';
@@ -4808,64 +4612,64 @@
             app.CustomRerefEditField.Position = [94 8 81 22];
 
             % Create RunandsaveICAdecompositionsCheckBox
-            app.RunandsaveICAdecompositionsCheckBox = uicheckbox(app.Step4OptionalSettingsPanel);
+            app.RunandsaveICAdecompositionsCheckBox = uicheckbox(app.Step4OthersettingsPanel);
             app.RunandsaveICAdecompositionsCheckBox.Text = 'Run and save ICA decompositions?';
             app.RunandsaveICAdecompositionsCheckBox.Position = [10 97 224 22];
 
             % Create InterpolatemanuallyidentifiedbadchannelsCheckBox
-            app.InterpolatemanuallyidentifiedbadchannelsCheckBox = uicheckbox(app.Step4OptionalSettingsPanel);
+            app.InterpolatemanuallyidentifiedbadchannelsCheckBox = uicheckbox(app.Step4OthersettingsPanel);
             app.InterpolatemanuallyidentifiedbadchannelsCheckBox.ValueChangedFcn = createCallbackFcn(app, @InterpolatemanuallyidentifiedbadchannelsCheckBoxValueChanged, true);
             app.InterpolatemanuallyidentifiedbadchannelsCheckBox.Text = 'Interpolate manually identified bad channels?';
             app.InterpolatemanuallyidentifiedbadchannelsCheckBox.Position = [10 72 266 22];
 
             % Create DownsampledFrequencyNumericEditField
-            app.DownsampledFrequencyNumericEditField = uieditfield(app.Step4OptionalSettingsPanel, 'numeric');
+            app.DownsampledFrequencyNumericEditField = uieditfield(app.Step4OthersettingsPanel, 'numeric');
             app.DownsampledFrequencyNumericEditField.Position = [400 101 37 22];
             app.DownsampledFrequencyNumericEditField.Value = 500;
 
             % Create ARBCISettingsLampLabel
-            app.ARBCISettingsLampLabel = uilabel(app.Step4OptionalSettingsPanel);
+            app.ARBCISettingsLampLabel = uilabel(app.Step4OthersettingsPanel);
             app.ARBCISettingsLampLabel.HorizontalAlignment = 'right';
             app.ARBCISettingsLampLabel.Position = [330 56 72 22];
             app.ARBCISettingsLampLabel.Text = 'BCI Settings';
 
             % Create ARBCISettingsLamp
-            app.ARBCISettingsLamp = uilamp(app.Step4OptionalSettingsPanel);
+            app.ARBCISettingsLamp = uilamp(app.Step4OthersettingsPanel);
             app.ARBCISettingsLamp.Position = [472 60 13 13];
             app.ARBCISettingsLamp.Color = [1 0 0];
 
             % Create ARBCISettingsButton
-            app.ARBCISettingsButton = uibutton(app.Step4OptionalSettingsPanel, 'push');
+            app.ARBCISettingsButton = uibutton(app.Step4OthersettingsPanel, 'push');
             app.ARBCISettingsButton.ButtonPushedFcn = createCallbackFcn(app, @ARBCISettingsButtonPush, true);
             app.ARBCISettingsButton.Position = [408 56 54 22];
             app.ARBCISettingsButton.Text = 'Import';
 
             % Create PreprocessingSettingsButton
-            app.PreprocessingSettingsButton = uibutton(app.Step4OptionalSettingsPanel, 'push');
+            app.PreprocessingSettingsButton = uibutton(app.Step4OthersettingsPanel, 'push');
             app.PreprocessingSettingsButton.ButtonPushedFcn = createCallbackFcn(app, @PreprocessingSettingsButtonPush, true);
             app.PreprocessingSettingsButton.Position = [408 24 54 22];
             app.PreprocessingSettingsButton.Text = 'Import';
 
             % Create PreProcessingSettingsLampLabel
-            app.PreProcessingSettingsLampLabel = uilabel(app.Step4OptionalSettingsPanel);
+            app.PreProcessingSettingsLampLabel = uilabel(app.Step4OthersettingsPanel);
             app.PreProcessingSettingsLampLabel.HorizontalAlignment = 'right';
             app.PreProcessingSettingsLampLabel.Position = [273 24 129 22];
             app.PreProcessingSettingsLampLabel.Text = 'Preprocessing Settings';
 
             % Create PreProcessingSettingsLamp
-            app.PreProcessingSettingsLamp = uilamp(app.Step4OptionalSettingsPanel);
+            app.PreProcessingSettingsLamp = uilamp(app.Step4OthersettingsPanel);
             app.PreProcessingSettingsLamp.Position = [472 28 13 13];
             app.PreProcessingSettingsLamp.Color = [1 0 0];
 
             % Create InterpolateextrathetabadchannelsMRISRTonlyCheckBox
-            app.InterpolateextrathetabadchannelsMRISRTonlyCheckBox = uicheckbox(app.Step4OptionalSettingsPanel);
+            app.InterpolateextrathetabadchannelsMRISRTonlyCheckBox = uicheckbox(app.Step4OthersettingsPanel);
             app.InterpolateextrathetabadchannelsMRISRTonlyCheckBox.Visible = 'off';
             app.InterpolateextrathetabadchannelsMRISRTonlyCheckBox.Text = 'Interpolate extra theta bad channels? (MRI-SRT only)';
             app.InterpolateextrathetabadchannelsMRISRTonlyCheckBox.FontSize = 10;
             app.InterpolateextrathetabadchannelsMRISRTonlyCheckBox.Position = [14 52 262 22];
 
             % Create ImageModeButtonGroup
-            app.ImageModeButtonGroup = uibuttongroup(app.Step4OptionalSettingsPanel);
+            app.ImageModeButtonGroup = uibuttongroup(app.Step4OthersettingsPanel);
             app.ImageModeButtonGroup.Title = 'Image Mode';
             app.ImageModeButtonGroup.FontWeight = 'bold';
             app.ImageModeButtonGroup.Position = [201 175 100 76];
@@ -4911,7 +4715,7 @@
 
             % Create ExperimentnameDropDown
             app.ExperimentnameDropDown = uidropdown(app.UIFigure);
-            app.ExperimentnameDropDown.Items = {'Custom', 'ADHD_SE_ABF', 'Cuing', 'EMO-MRI', 'EmoPhys', 'Emo_Storybook', 'ITNS', 'Maryland', 'MEQ_Spindles', 'Mirror', 'MRI-SRT', 'Recon', 'Storybook', 'SRTOT', 'EmoPreschool'};
+            app.ExperimentnameDropDown.Items = {'Custom', '<Input SNL experiment name>'};
             app.ExperimentnameDropDown.ValueChangedFcn = createCallbackFcn(app, @ExperimentnameDropDownValueChanged, true);
             app.ExperimentnameDropDown.Position = [464 700 147 22];
             app.ExperimentnameDropDown.Value = 'Custom';
@@ -4921,7 +4725,7 @@
     methods (Access = public)
 
         % Construct app
-        function app = PSGpower_GUI
+        function app = PSGpower_GUI_trimmed
 
             % Create and configure components
             createComponents(app)
