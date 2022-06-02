@@ -3,4 +3,4 @@ Sleep science has seen a surge in discoveries fueled by enhanced data processing
 
 To get started, please see the documentation in the [PSGpower wiki](https://github.com/afitzroy/psgpower/wiki).
 
-<p style="text-align:center;"><img src=https://github.com/afitzroy/psgpower/blob/public/documentation/GUIsnapshot.png></p>
+![image](https://user-images.githubusercontent.com/6626048/171641542-65705056-b0f0-4677-beae-d9c7fe8f080b.png)
